@@ -1,0 +1,40 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: auto;
+}
+
+#display {
+    height: 50px;
+    border: 1px solid black;
+}
+
+#main {
+    display: flex;
+    flex-direction: row;
+}
+
+#left {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 4;
+}
+
+#left button {
+    flex: 0 0 33.33%;
+}
+
+#right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#bottom {
+    width: 100%;
+}
+
+button {
+    width: 100%;
+}
