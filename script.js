@@ -102,4 +102,5 @@ clear.addEventListener('click', () => {
     num = '';
     displayNum = '';
     display(displayNum);
+    removeActiveClass();
 })
