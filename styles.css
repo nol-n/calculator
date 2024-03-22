@@ -1,28 +1,66 @@
+body {
+    background-color: #F3EEE9;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'digital-7';
+    src: url('fonts/digital-7.ttf') format('truetype');
+}
+
 #container {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 550px;
+    height: 400px;
     margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #D3D3D3;
+    padding: 5px;
 }
 
 #display {
-    height: 50px;
+    height: 100px;
     border: 1px solid black;
+    text-align: right;
+    background-color: #F0FFF0;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+#displaytext {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-family: 'digital-7', sans-serif;
+    font-size: 64px;
 }
 
 #main {
     display: flex;
     flex-direction: row;
+    flex: 4;
 }
 
 #left {
     display: flex;
     flex-wrap: wrap;
-    flex: 4;
+    flex: 3;
 }
 
 #left button {
-    flex: 0 0 33.33%;
+    flex: 1 0 33.33%;
+}
+
+#right button {
+    flex-grow: 1;
+    flex-basis: 0;
 }
 
 #right {
@@ -32,9 +70,19 @@
 }
 
 #bottom {
+    display: flex;
+    flex: 1;
+}
+
+#bottom .clear {
     width: 100%;
 }
 
 button {
-    width: 100%;
+    font-size: 16px;
+}
+
+.operand.active {
+    background-color: darkgray;
+    border: 1px black solid;
 }

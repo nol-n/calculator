@@ -11,37 +11,95 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return a / b;
+    return b === 0 ? "NICE TRY" : a / b;
 }
 
 function operate(op, a, b) {
     if (op === '+') {
-        add(a, b);
+        displayNum = add(a, b);
     } else if (op === '-') {
-        subtract(a, b);
+        displayNum = subtract(a, b);
     } else if (op === 'x') {
-        multiply(a, b);
+        displayNum = multiply(a, b);
     } else if (op === '/') {
-        divide(a, b);
+        displayNum = divide(a, b);
     }
+    display(displayNum);
 
 }
 
-const num1 = 1
-const num2 = 2
-const operator = ''
+let num = '';
+let operand = '';
+let displayNum = '';
 
 function display(value) {
-    const display_div = document.querySelector('#display');
-    display_div.textContent = value;
-    num2 = value;
+    const displayText = document.querySelector('#displaytext');
+    displayText.textContent = value;
 }
 
-const btn_ops = document.querySelectorAll('.operator');
-btn_ops.forEach(btn => {
+const btn_nums = document.querySelectorAll('.operator');
+btn_nums.forEach(btn => {
     btn.addEventListener("click", () => {
-        num1 = parseInt(btn.textContent);
-        display(num1);
+        num += btn.textContent;
+        display(num);
     });
 });
 
+const decimal = document.querySelector('.decimal');
+decimal.addEventListener("click", () => {
+    if (num.includes('.')) {
+        //do nothing
+    }
+
+    if (!num.includes('.')) {
+        num += '.';
+        display(num);
+    }
+});
+
+function removeActiveClass() {
+    btn_operands.forEach(btn => {
+        btn.classList.remove('active');
+    });
+}
+
+
+const btn_operands = document.querySelectorAll('.operand');
+btn_operands.forEach(btn => {
+    btn.addEventListener("click", function() {
+        if (!displayNum) {
+            operand = btn.textContent;
+            displayNum = +num;
+            num = '';
+        } else if (!num) {
+            operand = btn.textContent;
+        } 
+        else {
+            intNum = +num;
+            operate(operand, displayNum, intNum);
+            operand = btn.textContent;
+            num = '';
+        }
+        removeActiveClass(); // Remove 'active' class from all operands
+        this.classList.add('active');
+    });
+});
+
+const equals = document.querySelector('.equals');
+equals.addEventListener('click', () => {
+    if (!num || !displayNum) {
+        //do nothing
+    } else {
+        intNum = +num;
+        operate(operand, displayNum, intNum);
+        num = '';
+    }
+    removeActiveClass();
+})
+
+const clear = document.querySelector('.clear');
+clear.addEventListener('click', () => {
+    num = '';
+    displayNum = '';
+    display(displayNum);
+})
